@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# most recent ruby version supported by netlify
+ruby '2.3.1'
+
 # If you do not have OpenSSL installed, change
 # the following line to use 'http://'
 source 'https://rubygems.org'
