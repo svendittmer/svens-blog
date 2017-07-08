@@ -1,0 +1,46 @@
+doctype html
+html
+  head
+    meta[charset="utf-8"]
+    meta[http-equiv="X-UA-Compatible" content="IE=edge"]
+    meta[name="viewport" content="width=device-width, initial-scale=1"]
+    link[rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"]
+    title
+      | Sven Dittmer
+      - unless current_article.try(:title).nil?
+        = ' - ' + current_article.title 
+    = feed_tag :atom, "/feed.xml", title: "Atom Feed"
+  body
+    .container
+      .row
+        header.page-header
+          p.text-center
+            = link_to '/' do
+              = image_tag('https://www.gravatar.com/avatar/0fc4e73ea3152786d732d50befc68a8d?s=200',
+                          width: "150", height: "150", class: "img-circle",
+                          alt: "Sven Dittmer")
+      .row
+        #main.col-xs-12.col-md-9[role="main"]
+          = yield
+        aside.col-xs-12.col-md-3
+          h2
+            | Recent Articles
+          ol
+            - blog.articles[0...10].each do |article|
+              li
+                = link_to article.title, article
+                ' 
+                span
+                  = article.date.strftime('%b %e')
+          h2
+            | Tags
+          ol
+            - blog.tags.each do |tag, articles|
+              li
+                = link_to "#{tag} (#{articles.size})", tag_path(tag)
+          h2
+            | By Year
+          ol
+            - blog.articles.group_by {|a| a.date.year }.each do |year, articles|
+              li
+                = link_to "#{year} (#{articles.size})", blog_year_path(year)
