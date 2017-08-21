@@ -31,3 +31,5 @@ If the app serves server-rendered html, do you need all these jbuilder files?
 Unless you're sure you need that file, I strongly suggest adhering to the
 <abbr title="You aren't gonna need it">YAGNI</abbr> principle: Delete that code,
 or even better, don't even generate it, since *you aren't gonna need it*.
+
+## Unused controller actions
