@@ -2,7 +2,7 @@
 
 title: Switching to Arch Linux - A Journal
 date: 2017-09-10 18:37 UTC
-tags: 
+tags: arch-linux
 
 ---
 
